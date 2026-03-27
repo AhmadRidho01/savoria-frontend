@@ -34,3 +34,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Security Notes
+
+### Known npm audit warnings (accepted risk)
+
+| CVE                | Severity | Mitigasi                                          |
+| ------------------ | -------- | ------------------------------------------------- |
+| GHSA-9g9p          | High     | Whitelist domain di next.config.ts                |
+| GHSA-h25m          | High     | Validasi input dengan Zod di semua endpoint       |
+| GHSA-ggv3          | High     | Tidak menggunakan rewrites yang kompleks          |
+| GHSA-3x4c          | High     | Set minimumCacheTTL di next.config.ts             |
+| GHSA-hmx5 (Swiper) | Critical | Swiper hanya render UI, tidak proses server input |
+| GHSA-5j98 (glob)   | High     | Dev tooling only, tidak masuk production build    |
+
+Fix tidak dilakukan karena semua tersedia hanya via breaking change upgrade.
+Keputusan ini di-review ulang saat project masuk fase production deployment.

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { MenuItem } from "@/types";
 
 interface MenuCardProps {
@@ -8,17 +9,31 @@ function formatPrice(price: number): string {
   return new Intl.NumberFormat("id-ID").format(price);
 }
 
+const categoryImages: Record<MenuItem["category"], string> = {
+  prasmanan:
+    "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80",
+  western:
+    "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80",
+  wedding:
+    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80",
+  box: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80",
+  snack:
+    "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80",
+};
+
 export default function MenuCard({ item }: MenuCardProps) {
   return (
     <div className="bg-[var(--white)] border border-[var(--gold)]/15 overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       {/* Gambar */}
-      <div className="relative aspect-square bg-gradient-to-br from-[var(--cream)] to-[#e8dcc8] flex items-center justify-center overflow-hidden">
-        <span className="text-5xl transition-transform duration-500 group-hover:scale-110">
-          🍽️
-        </span>
-        {/* Badge */}
+      <div className="relative aspect-square overflow-hidden">
+        <Image
+          src={categoryImages[item.category]}
+          alt={item.name}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
         {item.badge && (
-          <div className="absolute top-3 right-3 bg-[var(--red)] text-white text-[10px] tracking-widest uppercase px-3 py-1">
+          <div className="absolute top-3 right-3 bg-[var(--red)] text-white text-[10px] tracking-widest uppercase px-3 py-1 z-10">
             {item.badge}
           </div>
         )}
@@ -32,8 +47,6 @@ export default function MenuCard({ item }: MenuCardProps) {
         <p className="text-xs text-[var(--text-muted)] leading-relaxed mb-4">
           {item.description}
         </p>
-
-        {/* Footer card */}
         <div className="flex items-center justify-between">
           <div>
             <span className="font-serif text-xl text-[var(--gold-dark)]">

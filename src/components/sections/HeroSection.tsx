@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -23,7 +24,7 @@ export default function HeroSection() {
     >
       {/* Background Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `repeating-linear-gradient(
             45deg,
@@ -36,42 +37,26 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Gradient Overlay Kanan */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#1a1008] via-[#1a1008]/80 to-[#1a1008]/20" />
-
-      {/* Foto Placeholder — ganti dengan <Image> saat foto real tersedia */}
-      <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-[#3d2008]/60 to-transparent" />
-      <div
-        className="absolute right-[5%] top-1/2 -translate-y-1/2
-          w-[340px] h-[340px] md:w-[420px] md:h-[420px]
-          rounded-full
-          bg-gradient-to-br from-[#5c3010] via-[#3d2008] to-[#2a1505]
-          border border-[var(--gold)]/20
-          flex items-center justify-center
-          text-7xl opacity-60"
-        style={{ boxShadow: "0 0 80px rgba(201,168,76,0.08)" }}
-      >
-        🍽️
-        {/* Lingkaran dekoratif dalam */}
-        <div className="absolute inset-4 rounded-full border border-[var(--gold)]/10" />
+      {/* Foto hero — kanan */}
+      <div className="absolute right-0 top-0 bottom-0 w-1/2 overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80"
+          alt="Fine dining presentation"
+          fill
+          className="object-cover opacity-40"
+          priority
+        />
+        {/* Gradient overlay agar menyatu dengan background kiri */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1a1008] via-[#1a1008]/10 to-transparent" />
       </div>
 
-      {/* Tag atas */}
-      <div className="absolute top-10 left-[5%] z-10">
-        <p className="text-xs tracking-[4px] uppercase text-[var(--gold)]/70 font-sans">
-          Savoria Catering — Est. 2020
-        </p>
-      </div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#1a1008] via-[#1a1008]/80 to-transparent" />
 
       {/* Konten Utama */}
       <div className="relative z-10 px-[5%] max-w-2xl">
-        {/* Tag Section */}
         <div
-          className={`
-            inline-flex items-center gap-3 mb-6
-            transition-all duration-700
-            ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-          `}
+          className={`inline-flex items-center gap-3 mb-6 transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           <span className="w-8 h-px bg-[var(--gold)]" />
           <span className="text-xs tracking-widest uppercase text-[var(--gold)]">
@@ -79,14 +64,8 @@ export default function HeroSection() {
           </span>
         </div>
 
-        {/* Headline */}
         <h1
-          className={`
-            font-serif font-light text-white leading-[1.1] mb-6
-            text-5xl md:text-6xl lg:text-7xl
-            transition-all duration-700 delay-100
-            ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-          `}
+          className={`font-serif font-light text-white leading-[1.1] mb-6 text-5xl md:text-6xl lg:text-7xl transition-all duration-700 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           Cita Rasa <em className="italic text-[var(--gold)]">Terbaik</em>
           <br />
@@ -95,26 +74,15 @@ export default function HeroSection() {
           <em className="italic text-[var(--gold)]">Momen</em> Spesial
         </h1>
 
-        {/* Deskripsi */}
         <p
-          className={`
-            text-white/60 font-light text-base md:text-lg leading-relaxed
-            max-w-md mb-10
-            transition-all duration-700 delay-200
-            ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-          `}
+          className={`text-white/60 font-light text-base md:text-lg leading-relaxed max-w-md mb-10 transition-all duration-700 delay-200 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           Menghadirkan pengalaman kuliner bintang lima langsung ke acara Anda —
           dari gathering korporat hingga perayaan pernikahan paling intim.
         </p>
 
-        {/* CTA Buttons */}
         <div
-          className={`
-            flex flex-wrap gap-4 items-center
-            transition-all duration-700 delay-300
-            ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-          `}
+          className={`flex flex-wrap gap-4 items-center transition-all duration-700 delay-300 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           <Link
             href="/#pesan"
@@ -133,12 +101,7 @@ export default function HeroSection() {
 
       {/* Stats Bar */}
       <div
-        className={`
-          absolute bottom-10 left-[5%] z-10
-          flex gap-12
-          transition-all duration-700 delay-500
-          ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-        `}
+        className={`absolute bottom-10 left-[5%] z-10 flex gap-12 transition-all duration-700 delay-500 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
       >
         {stats.map((stat, i) => (
           <div key={i}>

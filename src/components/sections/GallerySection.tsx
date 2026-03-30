@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionTag from "@/components/ui/SectionTag";
 
 const galleryItems = [
@@ -5,37 +6,37 @@ const galleryItems = [
     id: "1",
     label: "Prasmanan Nusantara",
     large: true,
-    bg: "from-[#c8d4b8] to-[#b0c498]",
+    src: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&q=80",
   },
   {
     id: "2",
     label: "Western Fusion",
     large: false,
-    bg: "from-[#d4c8b8] to-[#c4b498]",
+    src: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80",
   },
   {
     id: "3",
     label: "Wedding Elegance",
     large: false,
-    bg: "from-[#b8c8d4] to-[#98b4c4]",
+    src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80",
   },
   {
     id: "4",
     label: "Box Catering",
     large: false,
-    bg: "from-[#d4b8b8] to-[#c49898]",
+    src: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80",
   },
   {
     id: "5",
     label: "Snack & Dessert",
     large: false,
-    bg: "from-[#c8b8d4] to-[#b498c4]",
+    src: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80",
   },
   {
     id: "6",
     label: "Fine Dining",
     large: false,
-    bg: "from-[#d4d4b8] to-[#c4c498]",
+    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80",
   },
 ];
 
@@ -43,7 +44,6 @@ export default function GallerySection() {
   return (
     <section id="galeri" className="bg-[var(--white)] pt-24 md:pt-32 px-[5%]">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-14" data-aos="fade-up">
           <SectionTag label="Galeri" />
           <h2 className="font-serif font-light text-4xl md:text-5xl leading-[1.15] text-[var(--text)]">
@@ -53,27 +53,26 @@ export default function GallerySection() {
           </h2>
         </div>
 
-        {/* Grid Gallery */}
+        {/* Grid dengan tinggi row eksplisit */}
         <div
           className="grid grid-cols-2 md:grid-cols-4 gap-1"
+          style={{ gridTemplateRows: "repeat(2, 200px)" }}
           data-aos="fade-up"
           data-aos-delay="100"
         >
           {galleryItems.map((item) => (
             <div
               key={item.id}
-              className={`
-                relative overflow-hidden cursor-pointer group
-                ${
-                  item.large
-                    ? "col-span-2 row-span-2 aspect-square md:aspect-auto md:h-[400px]"
-                    : "aspect-square"
-                }
-              `}
+              className="relative overflow-hidden cursor-pointer group"
+              style={
+                item.large ? { gridColumn: "span 2", gridRow: "span 2" } : {}
+              }
             >
-              {/* Placeholder background */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${item.bg} transition-transform duration-500 group-hover:scale-105`}
+              <Image
+                src={item.src}
+                alt={item.label}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
 
               {/* Overlay hover */}
@@ -83,8 +82,8 @@ export default function GallerySection() {
                 </span>
               </div>
 
-              {/* Label */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/40 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              {/* Label slide up */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <p className="text-white text-xs tracking-widest uppercase">
                   {item.label}
                 </p>
@@ -93,7 +92,6 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* CTA bawah gallery */}
         <div className="text-center py-12" data-aos="fade-up">
           <button className="border border-[var(--gold)] text-[var(--gold-dark)] text-xs tracking-widest uppercase px-8 py-4 hover:bg-[var(--gold)] hover:text-white transition-all duration-200">
             Lihat Semua Foto →

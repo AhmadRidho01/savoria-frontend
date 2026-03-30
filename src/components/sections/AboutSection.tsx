@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionTag from "@/components/ui/SectionTag";
 
 const features = [
@@ -28,18 +29,20 @@ export default function AboutSection() {
     <section id="tentang" className="bg-[var(--white)] py-24 md:py-32 px-[5%]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
         {/* Kolom Kiri — Foto */}
-        <div className="relative" data-aos="fade-right" data-aos-delay="0">
-          {/* Frame dekoratif */}
+        <div className="relative" data-aos="fade-right">
           <div className="absolute -top-4 -left-4 right-4 bottom-4 border border-[var(--gold-light)] -z-0" />
 
-          {/* Placeholder foto */}
-          <div className="relative z-10 aspect-[4/5] bg-gradient-to-br from-[var(--cream)] to-[#e8dcc8] flex items-center justify-center">
-            <span className="text-xs tracking-widest uppercase text-black/20">
-              Photo Placeholder
-            </span>
+          {/* Foto chef */}
+          <div className="relative z-10 aspect-[4/5] overflow-hidden">
+            <Image
+              src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&q=80"
+              alt="Chef profesional Savoria"
+              fill
+              className="object-cover"
+            />
           </div>
 
-          {/* Badge pengalaman */}
+          {/* Badge */}
           <div className="absolute -bottom-6 -right-6 z-20 bg-[var(--red)] text-white p-6 text-center">
             <span className="font-serif text-4xl font-light block leading-none">
               12+
@@ -53,23 +56,17 @@ export default function AboutSection() {
         {/* Kolom Kanan — Teks */}
         <div className="pt-8 md:pt-0" data-aos="fade-left" data-aos-delay="100">
           <SectionTag label="Tentang Kami" />
-
           <h2 className="font-serif font-light text-4xl md:text-5xl leading-[1.15] text-[var(--text)] mb-4">
             Passion & <em className="italic text-[var(--red)]">Presisi</em>
             <br />
             di Setiap Sajian
           </h2>
-
-          {/* Gold line */}
           <div className="w-12 h-px bg-[var(--gold)] my-6" />
-
           <p className="text-[var(--text-muted)] font-light text-base leading-relaxed mb-10 max-w-lg">
             Savoria lahir dari keyakinan bahwa setiap momen berhak mendapatkan
             sajian terbaik. Sejak 2012, kami telah melayani ratusan event dari
             skala intimate hingga ribuan tamu di seluruh Indonesia.
           </p>
-
-          {/* Feature grid */}
           <div className="grid grid-cols-2 gap-5">
             {features.map((feat) => (
               <div key={feat.title} className="flex items-start gap-3">

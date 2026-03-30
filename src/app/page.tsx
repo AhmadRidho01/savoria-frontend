@@ -5,6 +5,7 @@ import MenuSection from "@/components/sections/MenuSection";
 import WhySection from "@/components/sections/WhySection";
 import TestimonySection from "@/components/sections/TestimonySection";
 import GallerySection from "@/components/sections/GallerySection";
+import ClientsSection from "@/components/sections/ClientsSection";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
       <WhySection />
       <TestimonySection />
       <GallerySection />
+      <ClientsSection />
     </>
   );
 }

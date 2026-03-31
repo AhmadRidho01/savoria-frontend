@@ -69,12 +69,12 @@ export default function ClientsSection() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="bg-[var(--bg)] py-8 flex flex-col items-center justify-center gap-2"
+              className="bg-[var(--bg)] py-6 flex flex-col items-center justify-center gap-1.5 px-2"
             >
-              <span className="font-serif text-4xl font-light text-[var(--gold-dark)]">
+              <span className="font-serif text-2xl md:text-4xl font-light text-[var(--gold-dark)]">
                 {stat.num}
               </span>
-              <span className="text-xs tracking-widest uppercase text-[var(--text-muted)]">
+              <span className="text-[10px] md:text-xs tracking-wider uppercase text-[var(--text-muted)] text-center leading-tight">
                 {stat.label}
               </span>
             </div>

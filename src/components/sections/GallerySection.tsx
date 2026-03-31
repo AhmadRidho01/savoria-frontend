@@ -1,4 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
 import SectionTag from "@/components/ui/SectionTag";
 
 const galleryItems = [
@@ -44,6 +51,7 @@ export default function GallerySection() {
   return (
     <section id="galeri" className="bg-[var(--white)] pt-24 md:pt-32 px-[5%]">
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-14" data-aos="fade-up">
           <SectionTag label="Galeri" />
           <h2 className="font-serif font-light text-4xl md:text-5xl leading-[1.15] text-[var(--text)]">
@@ -53,9 +61,48 @@ export default function GallerySection() {
           </h2>
         </div>
 
-        {/* Grid dengan tinggi row eksplisit */}
+        {/* Mobile — Swiper slider */}
         <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-1"
+          className="block md:hidden"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          style={{ overflow: "hidden" }}
+        >
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={12}
+            slidesPerView={1.2}
+            centeredSlides={false}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            pagination={{ clickable: true }}
+            className="!pb-10"
+            style={{ overflow: "hidden" }}
+          >
+            {galleryItems.map((item) => (
+              <SwiperSlide key={item.id}>
+                <div className="relative aspect-[4/3] overflow-hidden rounded-sm group cursor-pointer">
+                  <Image
+                    src={item.src}
+                    alt={item.label}
+                    fill
+                    sizes="85vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Label */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
+                    <p className="text-white text-xs tracking-widest uppercase">
+                      {item.label}
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Desktop — Grid masonry */}
+        <div
+          className="hidden md:grid grid-cols-4 gap-1"
           style={{ gridTemplateRows: "repeat(2, 200px)" }}
           data-aos="fade-up"
           data-aos-delay="100"
@@ -72,22 +119,14 @@ export default function GallerySection() {
                 src={item.src}
                 alt={item.label}
                 fill
-                sizes={
-                  item.large
-                    ? "(max-width: 768px) 100vw, 50vw"
-                    : "(max-width: 768px) 50vw, 25vw"
-                }
+                sizes={item.large ? "50vw" : "25vw"}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
-
-              {/* Overlay hover */}
               <div className="absolute inset-0 bg-[var(--red)]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <span className="text-white text-xs tracking-[4px] uppercase border border-white/60 px-5 py-2.5">
                   Lihat
                 </span>
               </div>
-
-              {/* Label slide up */}
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <p className="text-white text-xs tracking-widest uppercase">
                   {item.label}
@@ -97,6 +136,7 @@ export default function GallerySection() {
           ))}
         </div>
 
+        {/* CTA */}
         <div className="text-center py-12" data-aos="fade-up">
           <button className="border border-[var(--gold)] text-[var(--gold-dark)] text-xs tracking-widest uppercase px-8 py-4 hover:bg-[var(--gold)] hover:text-white transition-all duration-200">
             Lihat Semua Foto →

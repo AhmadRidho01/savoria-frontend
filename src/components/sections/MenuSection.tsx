@@ -40,27 +40,32 @@ export default function MenuSection() {
 
         {/* Filter Tabs */}
         <div
-          className="flex gap-0 border-b border-[var(--gold-light)] mb-10 overflow-x-auto"
+          className="relative w-full mb-10"
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          {tabs.map((tab) => (
-            <button
-              key={tab.value}
-              onClick={() => setActive(tab.value)}
-              className={`
-                flex-shrink-0 px-5 py-3 text-xs tracking-widest uppercase
-                border-b-2 -mb-px transition-all duration-200 font-sans
-                ${
-                  active === tab.value
-                    ? "border-[var(--red)] text-[var(--red)]"
-                    : "border-transparent text-[var(--text-muted)] hover:text-[var(--text)]"
-                }
-              `}
-            >
-              {tab.label}
-            </button>
-          ))}
+          <div
+            className="flex border-b border-[var(--gold-light)] overflow-x-auto scrollbar-none"
+            style={{ maxWidth: "100%" }}
+          >
+            {tabs.map((tab) => (
+              <button
+                key={tab.value}
+                onClick={() => setActive(tab.value)}
+                className={`
+          flex-shrink-0 px-4 py-3 text-xs tracking-widest uppercase
+          border-b-2 -mb-px transition-all duration-200 font-sans
+          ${
+            active === tab.value
+              ? "border-[var(--red)] text-[var(--red)]"
+              : "border-transparent text-[var(--text-muted)] hover:text-[var(--text)]"
+          }
+        `}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Grid Menu */}

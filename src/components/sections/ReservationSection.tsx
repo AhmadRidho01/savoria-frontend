@@ -90,7 +90,7 @@ export default function ReservationSection() {
 
   return (
     <section id="pesan" className="bg-[var(--white)] py-24 md:py-32 px-[5%]">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto w-full overflow-hidden">
         {/* Header */}
         <div className="mb-16" data-aos="fade-up">
           <SectionTag label="Pemesanan" />
@@ -102,7 +102,7 @@ export default function ReservationSection() {
           <div className="w-12 h-px bg-[var(--gold)] mt-6" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24">
           {/* Kolom Kiri — Info Kontak */}
           <div data-aos="fade-right">
             <h3 className="font-serif text-2xl font-light text-[var(--text)] mb-4">

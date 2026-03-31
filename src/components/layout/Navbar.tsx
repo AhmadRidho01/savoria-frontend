@@ -1,3 +1,4 @@
+// src/components/layout/Navbar.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -17,8 +18,9 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    setScrolled(window.scrollY > 60);
     const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -32,8 +34,10 @@ export default function Navbar() {
             : "bg-transparent py-5"
         }
       `}
+      style={{ width: "100vw", maxWidth: "100%" }}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      {/* Main bar */}
+      <div className="w-full px-6 flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
@@ -84,28 +88,33 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — full width, no overflow */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${menuOpen ? "max-h-96" : "max-h-0"}`}
+        className={`
+          md:hidden w-full overflow-hidden transition-all duration-300
+          ${menuOpen ? "max-h-96" : "max-h-0"}
+        `}
       >
-        <div className="bg-[var(--bg)] border-t border-[var(--gold-light)] px-6 py-4 flex flex-col gap-4">
+        <div className="w-full bg-[var(--bg)] border-t border-[var(--gold-light)] py-4 flex flex-col">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--gold)] transition-colors duration-200"
+              className="px-6 py-3 text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--gold)] hover:bg-[var(--cream)] transition-colors duration-200"
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/#pesan"
-            onClick={() => setMenuOpen(false)}
-            className="bg-[var(--red)] text-white text-xs tracking-widest uppercase px-6 py-3 text-center mt-2"
-          >
-            Pesan Sekarang
-          </Link>
+          <div className="px-6 pt-2">
+            <Link
+              href="/#pesan"
+              onClick={() => setMenuOpen(false)}
+              className="block w-full bg-[var(--red)] text-white text-xs tracking-widest uppercase px-6 py-3 text-center"
+            >
+              Pesan Sekarang
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

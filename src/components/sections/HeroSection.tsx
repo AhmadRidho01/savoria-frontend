@@ -20,7 +20,7 @@ export default function HeroSection() {
   return (
     <section
       id="beranda"
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#1a1008]"
+      className="relative min-h-[750px] md:min-h-screen flex items-center overflow-hidden bg-[#1a1008]"
     >
       {/* Background Pattern */}
       <div
@@ -43,6 +43,7 @@ export default function HeroSection() {
           src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80"
           alt="Fine dining presentation"
           fill
+          sizes="50vw"
           className="object-cover opacity-40"
           priority
         />

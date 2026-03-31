@@ -31,7 +31,11 @@ export default function TestimonySection() {
         </div>
 
         {/* Swiper */}
-        <div data-aos="fade-up" data-aos-delay="100">
+        <div
+          data-aos="fade-up"
+          data-aos-delay="100"
+          style={{ maxWidth: "100%", overflow: "hidden" }}
+        >
           <Swiper
             modules={[Pagination, Autoplay]}
             spaceBetween={24}
@@ -44,6 +48,7 @@ export default function TestimonySection() {
               1024: { slidesPerView: 3 },
             }}
             className="!pb-12"
+            style={{ overflow: "hidden" }}
           >
             {testimonies.map((item) => (
               <SwiperSlide key={item.id} className="h-auto">

@@ -38,6 +38,7 @@ export default function AboutSection() {
               src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&q=80"
               alt="Chef profesional Savoria"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </div>

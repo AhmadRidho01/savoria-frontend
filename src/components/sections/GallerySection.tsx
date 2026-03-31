@@ -63,7 +63,7 @@ export default function GallerySection() {
           {galleryItems.map((item) => (
             <div
               key={item.id}
-              className="relative overflow-hidden cursor-pointer group"
+              className="relative overflow-hidden cursor-pointer group h-full"
               style={
                 item.large ? { gridColumn: "span 2", gridRow: "span 2" } : {}
               }
@@ -72,6 +72,11 @@ export default function GallerySection() {
                 src={item.src}
                 alt={item.label}
                 fill
+                sizes={
+                  item.large
+                    ? "(max-width: 768px) 100vw, 50vw"
+                    : "(max-width: 768px) 50vw, 25vw"
+                }
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
 
